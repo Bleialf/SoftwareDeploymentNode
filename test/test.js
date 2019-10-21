@@ -14,7 +14,12 @@ describe("Node Express", function() {
 
         it("Contains Welcome", function(done){
             request.get(base_url, function(error, response, body){
-                chai.assert.include(body, "Hi");
+                try {
+                    chai.assert.include(body, "Hi"); 
+                } catch(err) {
+                    done(err);
+                } 
+                
                 done();
             });
         });
