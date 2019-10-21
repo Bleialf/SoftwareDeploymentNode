@@ -45,7 +45,7 @@ stages:
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: '**/test-*.xml'
-        failTaskOnFailedTests: false
+        failTaskOnFailedTests: true
       
     - task: ArchiveFiles@2
       displayName: 'Archive files'
