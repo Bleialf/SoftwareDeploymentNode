@@ -1,6 +1,6 @@
 var request = require("request"),
     assert = require('assert'),
-    chai = require = ('chai'),
+    chai = require('chai'),
     base_url = 'https://fhwn19-node-08.azurewebsites.net/'
 
 describe("Node Express", function() {
