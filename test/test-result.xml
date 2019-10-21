@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="1.18" tests="2" failures="0">
-  <testsuite name="Root Suite" timestamp="2019-10-21T11:40:05" tests="0" failures="0" time="0">
+<testsuites name="Mocha Tests" time="0.956" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2019-10-21T11:49:32" tests="0" failures="0" time="0">
   </testsuite>
-  <testsuite name="Node Express" timestamp="2019-10-21T11:40:05" tests="0" file="C:\Users\Silence\Informatik\Kevin\Semester5\SoftwareDeployment\SoftwareDeploymentNode\test\test.js" failures="0" time="0">
+  <testsuite name="Node Express" timestamp="2019-10-21T11:49:32" tests="0" file="C:\Users\Silence\Informatik\Kevin\Semester5\SoftwareDeployment\SoftwareDeploymentNode\test\test.js" failures="0" time="0">
   </testsuite>
-  <testsuite name="GET /" timestamp="2019-10-21T11:40:05" tests="2" file="C:\Users\Silence\Informatik\Kevin\Semester5\SoftwareDeployment\SoftwareDeploymentNode\test\test.js" failures="0" time="1.18">
-    <testcase name="Node Express GET / returns status code 200" time="0.875" classname="returns status code 200">
+  <testsuite name="GET /" timestamp="2019-10-21T11:49:32" tests="2" file="C:\Users\Silence\Informatik\Kevin\Semester5\SoftwareDeployment\SoftwareDeploymentNode\test\test.js" failures="0" time="0.956">
+    <testcase name="Node Express GET / returns status code 200" time="0.521" classname="returns status code 200">
     </testcase>
-    <testcase name="Node Express GET / Contains Welcome" time="0.305" classname="Contains Welcome">
+    <testcase name="Node Express GET / Contains Welcome" time="0.435" classname="Contains Welcome">
     </testcase>
   </testsuite>
 </testsuites>
