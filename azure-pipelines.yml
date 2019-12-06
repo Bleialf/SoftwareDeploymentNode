@@ -40,7 +40,7 @@ stages:
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Pipeline.Workspace)'
-          artifact: 'deployment.yml'
+          artifact: 'config.yml'
           publishLocation: 'pipeline'
       
       - task: Kubernetes@1
@@ -51,6 +51,6 @@ stages:
           kubernetesCluster: 'wordpressCluster'
           command: 'apply'
           useConfigurationFile: true
-          configuration: 'deployment.yml'
+          configuration: 'config.yml'
           secretType: 'dockerRegistry'
           containerRegistryType: 'Azure Container Registry'
