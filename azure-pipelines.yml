@@ -4,18 +4,18 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- dockerize
 
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '62152589-f4c7-463f-8f49-f092a7e15d94'
+  azureSubscription: '161ae87f-baa5-4e41-bee5-890ec457a972'
   
   # Web app name
-  webAppName: 'fhwn19-node-08'
+  webAppName: ''
   
   # Environment name
-  environmentName: 'fhwn19-node-08'
+  environmentName: ''
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -30,55 +30,27 @@ stages:
       vmImage: $(vmImageName)
       
     steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
-      displayName: 'Install Node.js'
-
-    - script: |
-        npm install
-        npm run build --if-present
-        npm test --if-present
-      displayName: 'npm install, build and test'
-
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: '**/test-*.xml'
-        failTaskOnFailedTests: false
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'Docker Hub'
+          repository: 'bleialf/nodeapp'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
       
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
-
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      artifact: drop
-
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    environment: $(environmentName)
-    pool: 
-      vmImage: $(vmImageName)
-    strategy:
-      runOnce:
-        deploy:
-          steps:            
-          - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: fhwn19-node-08'
-            inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              appName: $(webAppName)
-              runtimeStack: 'NODE|10.10'
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Pipeline.Workspace)'
+          artifact: 'deployment.yml'
+          publishLocation: 'pipeline'
+      
+      - task: Kubernetes@1
+        inputs:
+          connectionType: 'Azure Resource Manager'
+          azureSubscriptionEndpoint: 'Azure für Bildungseinrichtungen (53d0d788-292f-4bd2-bf13-015afdc96297)'
+          azureResourceGroup: 'fhwn-19-kubernetes'
+          kubernetesCluster: 'wordpressCluster'
+          command: 'apply'
+          useConfigurationFile: true
+          configuration: 'deployment.yml'
+          secretType: 'dockerRegistry'
+          containerRegistryType: 'Azure Container Registry'
