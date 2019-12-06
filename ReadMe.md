@@ -8,4 +8,4 @@ IP: http://20.40.144.76/ (möglicherweise down weil ich fast kein guthaben mehr 
   - [Releasepipeline](Screenshots/ReleasePipeline.PNG)  
   - [Releaselog](Screenshots/CreateLog.PNG)  
 
-  - [Website](Screenshots/WebSite.PNG)
+  - [Website](Screenshots/WebSite.PNG) (bei jedem redeploy neuer loadbalancer => andere ip)
