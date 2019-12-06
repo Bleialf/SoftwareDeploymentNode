@@ -32,7 +32,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: bleialf/nodeapp
+      - image: bleialf/nodeapp:latest
         imagePullPolicy: Always
         name: nodeapp
         ports:
