@@ -5,8 +5,6 @@ metadata:
   labels:
     app: nodeapp
 spec:
-  strategy:
-    type: Recreate
   ports:
     - port: 80
   selector:
