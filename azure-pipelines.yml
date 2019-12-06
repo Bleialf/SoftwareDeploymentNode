@@ -42,15 +42,3 @@ stages:
           targetPath: '$(Pipeline.Workspace)'
           artifact: 'config.yml'
           publishLocation: 'pipeline'
-      
-      - task: Kubernetes@1
-        inputs:
-          connectionType: 'Azure Resource Manager'
-          azureSubscriptionEndpoint: 'Azure für Bildungseinrichtungen (53d0d788-292f-4bd2-bf13-015afdc96297)'
-          azureResourceGroup: 'fhwn-19-kubernetes'
-          kubernetesCluster: 'wordpressCluster'
-          command: 'apply'
-          useConfigurationFile: true
-          configuration: 'config.yml'
-          secretType: 'dockerRegistry'
-          containerRegistryType: 'Azure Container Registry'
