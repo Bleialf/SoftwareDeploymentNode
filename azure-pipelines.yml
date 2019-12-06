@@ -30,10 +30,10 @@ stages:
       vmImage: $(vmImageName)
       
     steps:
-      - task: Docker@2
+      - task: Docker@2  
         inputs:
-          containerRegistry: 'Docker Hub'
-          repository: 'bleialf/nodeapp'
+          containerRegistry: 'dockerhub'
+          repository: 'nodeapp'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
       
