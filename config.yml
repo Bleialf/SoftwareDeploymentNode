@@ -33,7 +33,6 @@ spec:
     spec:
       containers:
       - image: bleialf/nodeapp:latest
-        imagePullPolicy: Always
         name: nodeapp
         ports:
         - containerPort: 80
