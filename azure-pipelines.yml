@@ -36,6 +36,7 @@ stages:
           repository: 'bleialf/nodeapp'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
+          tags: 'latest'
       
       - task: PublishPipelineArtifact@1
         inputs:
