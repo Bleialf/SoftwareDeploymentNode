@@ -41,5 +41,5 @@ stages:
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Pipeline.Workspace)'
-          artifact: 'config.yml'
+          artifact: 'artifact'
           publishLocation: 'pipeline'
